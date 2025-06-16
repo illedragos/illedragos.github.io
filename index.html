@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Your Personal GitHub Page</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f0f0f0;
+        color: #333;
+        text-align: center;
+        padding: 40px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      header {
+        font-size: 2em;
+        font-weight: bold;
+        color: #800000;
+        margin-bottom: 10px;
+        animation: fadeIn 1s ease-out;
+      }
+
+      h2 {
+        color: #4a90e2;
+        margin-top: 30px;
+      }
+
+      .profile-pic {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 20px auto;
+        border: 4px solid #4a90e2;
+      }
+
+      .button {
+        background-color: #4a90e2;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 1em;
+        border-radius: 8px;
+        cursor: pointer;
+        margin: 5px;
+        transition: background-color 0.3s;
+      }
+
+      .button:hover {
+        background-color: #357ab8;
+      }
+
+      .rapid-button {
+        background-color: #800000;
+      }
+
+      .rapid-button:hover {
+        background-color: #5e0000;
+      }
+
+      .info-box {
+        margin: 20px auto;
+        max-width: 500px;
+        padding: 15px;
+        border: 2px solid #ccc;
+        border-radius: 12px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+      }
+
+      .info-box:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      .dark-mode {
+        background-color: #1e1e1e;
+        color: #ddd;
+      }
+
+      .dark-mode .info-box {
+        background-color: #2a2a2a;
+        border-color: #555;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      }
+
+      .dark-mode .info-box:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+      }
+
+      input[type="text"] {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>Ille Dragos-Vasile</header>
+
+    <img
+      class="profile-pic"
+      src="https://github.com/illedragos.png"
+      alt="Profile Picture"
+    />
+    <div>
+      <button class="button" onclick="visitDev()">
+        Visit My Favorite Dev Site
+      </button>
+      <button class="button rapid-button" onclick="visitTeam()">
+        Visit My Favorite Football Team
+      </button>
+      <button class="button" onclick="toggleDarkMode()">
+        Toggle Dark Mode
+      </button>
+    </div>
+
+    <div class="info-box" id="clockBox">
+      <h2>🕒 Current Time</h2>
+      <p id="clock">Loading time...</p>
+    </div>
+
+    <div class="info-box">
+      <h2>🤣 Random Joke</h2>
+      <p id="joke">Loading joke...</p>
+    </div>
+
+    <div class="info-box">
+      <h2>💪 Motivational Quote</h2>
+      <p id="quote">Loading quote...</p>
+    </div>
+
+    <div class="info-box">
+      <h2>👋 Say Hello!</h2>
+      <label for="username">Enter your name:</label>
+      <br />
+      <input type="text" id="username" placeholder="Your name" />
+      <br />
+      <button class="button" onclick="greetUser()">Greet Me</button>
+      <p id="greetingMessage"></p>
+    </div>
+
+    <script>
+      function visitDev() {
+        window.open("https://dev.to", "_blank");
+      }
+
+      function visitTeam() {
+        window.open("https://www.fcrapid.ro/", "_blank");
+      }
+
+      function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+      }
+
+      function greetUser() {
+        const name = document.getElementById("username").value.trim();
+        const msg = name ? `Nice to meet you, ${name}! 👋` : "Hello there!";
+        document.getElementById("greetingMessage").textContent = msg;
+      }
+
+      function updateClock() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString();
+        document.getElementById("clock").textContent = timeString;
+      }
+
+      function showRandomJoke() {
+        const jokes = [
+          "Why do programmers prefer dark mode? Because light attracts bugs!",
+          "I told my computer I needed a break, and it said 'no problem — I'll go to sleep.'",
+          "There are 10 kinds of people: those who understand binary and those who don’t.",
+          "Debugging: Being the detective in a crime movie where you are also the murderer.",
+        ];
+        const joke = jokes[Math.floor(Math.random() * jokes.length)];
+        document.getElementById("joke").textContent = joke;
+      }
+
+      function showRandomQuote() {
+        const quotes = [
+          "Believe you can and you're halfway there.",
+          "Push yourself, because no one else is going to do it for you.",
+          "The harder you work for something, the greater you’ll feel when you achieve it.",
+          "Success is not in what you have, but who you are.",
+        ];
+        const quote = quotes[Math.floor(Math.random() * quotes.length)];
+        document.getElementById("quote").textContent = quote;
+      }
+
+      // Initialize
+      updateClock();
+      showRandomJoke();
+      showRandomQuote();
+      setInterval(updateClock, 1000);
+    </script>
+  </body>
+</html>
