@@ -2,33 +2,37 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Ille Dragos-Vasile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#4a90e2" />
+    <title>Your Personal GitHub Page</title>
+    <link rel="icon" href="https://github.com/illedragos.png" />
     <style>
       body {
         font-family: "Segoe UI", sans-serif;
         background-color: #f0f0f0;
         color: #333;
         text-align: center;
-        padding: 40px;
+        padding: 20px;
         transition: background-color 0.3s, color 0.3s;
       }
 
       header {
-        font-size: 2em;
+        font-size: 2.2em;
         font-weight: bold;
         color: #800000;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
         animation: fadeIn 1s ease-out;
       }
 
       h2 {
         color: #4a90e2;
-        margin-top: 30px;
+        margin-top: 25px;
+        font-size: 1.5em;
       }
 
       .profile-pic {
-        width: 150px;
-        height: 150px;
+        width: 140px;
+        height: 140px;
         border-radius: 50%;
         object-fit: cover;
         margin: 20px auto;
@@ -39,11 +43,11 @@
         background-color: #4a90e2;
         color: white;
         border: none;
-        padding: 12px 24px;
+        padding: 14px 26px;
         font-size: 1em;
         border-radius: 8px;
         cursor: pointer;
-        margin: 5px;
+        margin: 8px;
         transition: background-color 0.3s;
       }
 
@@ -62,12 +66,14 @@
       .info-box {
         margin: 20px auto;
         max-width: 500px;
-        padding: 15px;
+        padding: 18px;
         border: 2px solid #ccc;
         border-radius: 12px;
         background-color: #fff;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         transition: box-shadow 0.3s ease;
+        font-size: 1.1em;
+        line-height: 1.5em;
       }
 
       .info-box:hover {
@@ -90,11 +96,14 @@
       }
 
       input[type="text"] {
-        padding: 10px;
+        padding: 12px;
         border-radius: 5px;
         border: 1px solid #ccc;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        width: 80%;
+        max-width: 300px;
+        font-size: 1em;
       }
 
       @keyframes fadeIn {
@@ -105,16 +114,34 @@
           opacity: 1;
         }
       }
+
+      /* Responsive adjustments */
+      @media (max-width: 600px) {
+        header {
+          font-size: 1.8em;
+        }
+
+        .info-box {
+          padding: 16px;
+          font-size: 1em;
+        }
+
+        .button {
+          padding: 12px 20px;
+          font-size: 1em;
+        }
+      }
     </style>
   </head>
   <body>
-    <header>Ille Dragos-Vasile</header>
+    <header>Your Name Here</header>
 
     <img
       class="profile-pic"
       src="https://github.com/illedragos.png"
       alt="Profile Picture"
     />
+
     <div>
       <button class="button" onclick="visitDev()">
         Visit My Favorite Dev Site
