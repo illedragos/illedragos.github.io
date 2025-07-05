@@ -146,8 +146,8 @@
       <button class="button" onclick="visitDev()">
         Visit My Favorite Dev Site
       </button>
-      <button class="button rapid-button" onclick="visitTeam()">
-        Visit My Favorite Football Team
+      <button class="button" onclick="openPhilosophy()">
+        Top Philosophical Views
       </button>
       <button class="button" onclick="toggleDarkMode()">
         Toggle Dark Mode
@@ -180,6 +180,10 @@
     </div>
 
     <script>
+      function openPhilosophy() {
+        window.open("philosophy.html", "_blank");
+      }
+
       function visitDev() {
         window.open("https://dev.to", "_blank");
       }

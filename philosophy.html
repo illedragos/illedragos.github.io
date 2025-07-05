@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Filozofi despre Religie</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f9f9f9;
+        color: #333;
+        line-height: 1.5;
+        padding: 20px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      h1 {
+        margin-bottom: 1rem;
+        color: #2c3e50;
+        text-align: center;
+      }
+
+      .container {
+        max-width: 1200px;
+        width: 100%;
+      }
+
+      #searchBox {
+        width: 100%;
+        max-width: 400px;
+        padding: 10px 15px;
+        font-size: 1rem;
+        border-radius: 25px;
+        border: 1px solid #ccc;
+        margin-bottom: 1.5rem;
+        transition: border-color 0.3s ease;
+        outline: none;
+      }
+      #searchBox:focus {
+        border-color: #2980b9;
+        box-shadow: 0 0 8px rgba(41, 128, 185, 0.3);
+      }
+
+      /* Grid cards */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .card {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        transition: box-shadow 0.3s ease;
+      }
+      .back-button {
+        display: inline-block;
+        margin-bottom: 1rem;
+        text-decoration: none;
+        color: #2980b9;
+        font-weight: 600;
+        transition: color 0.3s ease;
+        float: left;
+      }
+      .back-button:hover {
+        color: #1c5980;
+      }
+      .card:hover {
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      }
+      .card h2 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.25rem;
+        color: #34495e;
+      }
+      .card p {
+        margin: 0.3rem 0;
+        font-size: 0.9rem;
+        color: #555;
+        flex-grow: 1;
+      }
+      .label {
+        font-weight: 600;
+        color: #2980b9;
+        margin-top: 0.75rem;
+        margin-bottom: 0.15rem;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      /* Responsive text */
+      @media (max-width: 480px) {
+        body {
+          padding: 10px;
+        }
+        .card {
+          padding: 1rem;
+        }
+        h1 {
+          font-size: 1.5rem;
+        }
+        .card h2 {
+          font-size: 1.1rem;
+        }
+        .back-button {
+          display: inline-block;
+          margin-bottom: 1rem;
+          text-decoration: none;
+          color: #2980b9;
+          font-weight: 600;
+          transition: color 0.3s ease;
+        }
+        .back-button:hover {
+          color: #1c5980;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="index.html" class="back-button">⬅ Back to main page</a>
+    <h1>Viziunea filozofilor despre religie si solutiile lor</h1>
+    <div class="container">
+      <input
+        type="text"
+        id="searchBox"
+        placeholder="Caută filozof după nume..."
+        aria-label="Caută filozof după nume"
+      />
+      <div id="philosophersGrid" class="grid"></div>
+    </div>
+
+    <script>
+      const philosophers = [
+        {
+          name: "Sigmund Freud",
+          view: "Iluzie infantilă, substitut de tată",
+          value: "Apărare psihică, dar regresivă",
+          critique: "Reprimă autonomia",
+          solution: "Raționalitate, știință",
+        },
+        {
+          name: "Carl Jung",
+          view: "Simbol al procesului de individuare",
+          value: "Vindecare prin arhetipuri",
+          critique: "Risc de magie/derivă ocultă",
+          solution: "Trăire simbolică",
+        },
+        {
+          name: "Friedrich Nietzsche",
+          view: "Religia = slăbiciune morală",
+          value: "Sistem de control al maselor",
+          critique: "Nega viața, voința, corpul",
+          solution: "Transvaluarea valorilor, supraomul",
+        },
+        {
+          name: "Søren Kierkegaard",
+          view: "Credința = salt paradoxal, nu rațiune",
+          value: "Oferă profunzime prin angoasă",
+          critique: "Nu poate fi explicată rațional",
+          solution: "Trăire autentică în fața lui Dumnezeu",
+        },
+        {
+          name: "Erich Fromm",
+          view: "Religie = autoritară vs. umanistă",
+          value: "Dragoste, conexiune, responsabilitate",
+          critique: "Alienare prin autoritate",
+          solution: "Spiritualitate umanistă",
+        },
+        {
+          name: "Paul Tillich",
+          view: "Dumnezeu = ființa ultimă",
+          value: "Exprimă angoasa, curajul de a fi",
+          critique: "Dogma sufocă dimensiunea existențială",
+          solution: "Religia ca trăire a misterului",
+        },
+        {
+          name: "Mircea Eliade",
+          view: "Sacrul ca structură universală a conștiinței",
+          value: "Omul religios trăiește mitic, simbolic",
+          critique: "Modernul desacralizat trăiește „plat”",
+          solution: "Reînvierea simbolurilor",
+        },
+        {
+          name: "Charles Taylor",
+          view: "Religia coexistă cu secularizarea",
+          value: "Oferă pluralism de sensuri",
+          critique: "Lumea e fragmentată",
+          solution: "Alegerea liberă a unei căi personale",
+        },
+        {
+          name: "Karen Armstrong",
+          view: "Religia = mit viu, trăire metaforică",
+          value: "Vindecare, compasiune, reflecție",
+          critique: "Dogmatismul distruge sacralitatea",
+          solution: "Religie contemplativă, mitopoetică",
+        },
+        {
+          name: "Paul Ricoeur",
+          view: "Simboluri = deschid spre „mai mult sens”",
+          value: "Oferă deschidere interpretativă",
+          critique: "Sensul poate fi pierdut în literalism",
+          solution: "Hermeneutică spirituală",
+        },
+        {
+          name: "Slavoj Žižek",
+          view: "Religia = simptom ideologic",
+          value: "Expr. inconștientului colectiv reprimat",
+          critique: "Maschează contradicțiile societale",
+          solution: "Etică post-religioasă",
+        },
+        {
+          name: "Simone Weil",
+          view: "Religia = atenție pură, suferință sacră",
+          value: "Spiritualitate etică profundă",
+          critique: "Fragilitate, lipsă de sistem",
+          solution: "Trăire tăcută a transcendenței",
+        },
+        {
+          name: "Baruch Spinoza",
+          view: "Dumnezeu = natura (panteism)",
+          value: "Unitate rațională cu lumea",
+          critique: "Neînțeles de religia tradițională",
+          solution: "Etică rațională, imanență divină",
+        },
+        {
+          name: "Jordan Peterson",
+          view: "Mituri religioase = coduri morale evolutive",
+          value: "Coerență, sens, asumare",
+          critique: "Posibil conservatorism, mit literalizat",
+          solution: "Integrarea simbolică în viața modernă",
+        },
+        {
+          name: "Martin Heidegger",
+          view: "Religia autentică = deschidere spre Ființă",
+          value: "„Angoasa” ne deschide spre sacru",
+          critique: "Teologia o distorsionează",
+          solution: "Ființare autentică, fără dogmă",
+        },
+        {
+          name: "Albert Camus",
+          view: "Absurditatea vieții face religia neconvingătoare",
+          value: "Răzvrătirea dă sens",
+          critique: "Dumnezeu nu răspunde",
+          solution: "Etică a solidarității, fără transcendență",
+        },
+        {
+          name: "Jean-Paul Sartre",
+          view: "Omul e condamnat la libertate",
+          value: "Omul își creează propriul sens",
+          critique: "Fără fundamente absolute",
+          solution: "Autenticitate radicală",
+        },
+        {
+          name: "David Hume",
+          view: "Religia = superstiție + emoție",
+          value: "Doar expresie a fricii",
+          critique: "Lipsă de dovezi",
+          solution: "Raționalism moderat, agnosticism critic",
+        },
+        {
+          name: "Ludwig Feuerbach",
+          view: "Dumnezeu = proiecția dorințelor umane",
+          value: "Oglindă psihologică a umanității",
+          critique: "Negarea obiectivului divin",
+          solution: "Umanism ateu",
+        },
+        {
+          name: "Auguste Comte",
+          view: "Religia = etapă infantilă în istoria umanității",
+          value: "Control social temporar util",
+          critique: "Depășită de știință",
+          solution: "„Religia umanității”",
+        },
+        {
+          name: "William James",
+          view: "Religia = experiență personală interioară",
+          value: "Are valoare psihologică profundă",
+          critique: "Nu poate fi redusă la doctrină",
+          solution: "Pluralism spiritual",
+        },
+        {
+          name: "Martin Buber",
+          view: "Religia = relație „Eu–Tu” cu divinul",
+          value: "Întâlnire vie cu un Tu absolut",
+          critique: "Sistemele o degradează în „Eu–Acela”",
+          solution: "Misticism relațional",
+        },
+        {
+          name: "Thomas Merton",
+          view: "Religia autentică = mistică + reflecție",
+          value: "Vindecare interioară, contemplație",
+          critique: "Critică instituționalismul religios",
+          solution: "Spiritualitate interconfesională",
+        },
+        {
+          name: "Ramana Maharshi",
+          view: "Divinul este „Sinele adevărat”",
+          value: "Eliberare prin introspecție",
+          critique: "Nu e o religie formală",
+          solution: "Auto-realizare spirituală",
+        },
+        {
+          name: "Buddha",
+          view: "Zeii nu rezolvă suferința",
+          value: "Religia ca practică, nu dogmă",
+          critique: "Dogma dă naștere atașamentelor",
+          solution: "Etică + meditație + luciditate",
+        },
+        {
+          name: "Confucius",
+          view: "Religia = ritual social + etică",
+          value: "Ordine morală, armonie socială",
+          critique: "Nu accentuează transcendentul",
+          solution: "Cultivarea virtuții prin tradiție",
+        },
+        {
+          name: "Lao Zi",
+          view: "Tao = fluxul realității universale",
+          value: "Întoarcere la simplitate, armonie",
+          critique: "Învățătura vagă, poetică",
+          solution: "Trăire spontană, non-acțiune (wu wei)",
+        },
+        {
+          name: "Rumi",
+          view: "Religia = iubire divină, fuziune cu Absolutul",
+          value: "Transcende egoul, unește sufletele",
+          critique: "Poate fi interpretată sentimental",
+          solution: "Misticism poetic",
+        },
+        {
+          name: "Plotin",
+          view: "Sufletul tinde spre „Unul”",
+          value: "Elevare spirituală, ierarhie cosmică",
+          critique: "Lumea materială e „inferioară”",
+          solution: "Contemplare mistică",
+        },
+      ];
+
+      const container = document.getElementById("philosophersGrid");
+      const searchBox = document.getElementById("searchBox");
+
+      function createCard(philosopher) {
+        const card = document.createElement("div");
+        card.classList.add("card");
+
+        card.innerHTML = `
+        <h2>${philosopher.name}</h2>
+        <p><span class="label">Viziune:</span> ${philosopher.view}</p>
+        <p><span class="label">Valoare:</span> ${philosopher.value}</p>
+        <p><span class="label">Critică:</span> ${philosopher.critique}</p>
+        <p><span class="label">Soluție:</span> ${philosopher.solution}</p>
+      `;
+
+        return card;
+      }
+
+      function renderList(list) {
+        container.innerHTML = "";
+        if (list.length === 0) {
+          container.innerHTML =
+            '<p style="grid-column: 1/-1; text-align:center; color:#999;">Nu a fost găsit niciun filozof.</p>';
+          return;
+        }
+        list.forEach((p) => container.appendChild(createCard(p)));
+      }
+
+      searchBox.addEventListener("input", (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        if (!query) {
+          renderList(philosophers);
+          return;
+        }
+        const filtered = philosophers.filter((p) =>
+          p.name.toLowerCase().includes(query)
+        );
+        renderList(filtered);
+      });
+
+      renderList(philosophers);
+    </script>
+  </body>
+</html>
