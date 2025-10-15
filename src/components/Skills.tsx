@@ -41,14 +41,18 @@ const Skills: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="skills" className="py-20 section-padding">
+    <section
+      ref={sectionRef}
+      id="skills"
+      className="py-20 section-padding bg-white dark:bg-neutral-900 transition-colors duration-300"
+    >
       <div className="container-max">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-neutral-900 mb-4">
+          <h2 className="text-4xl font-bold text-neutral-900 dark:text-white mb-4 transition-colors">
             Skills & Technologies
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full mx-auto mb-6"></div>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+          <p className="text-lg text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto transition-colors">
             Here's a breakdown of my technical skills and proficiency levels.
             I'm always learning and expanding my knowledge in emerging
             technologies.
@@ -57,12 +61,12 @@ const Skills: React.FC = () => {
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {skills.map((skill, index) => (
-            <div key={skill.name} className="space-y-3">
+            <div key={skill.name} className="space-y-3 group">
               <div className="flex justify-between items-center">
-                <span className="font-medium text-neutral-900">
+                <span className="font-medium text-neutral-900 dark:text-white transition-colors group-hover:text-primary-600 dark:group-hover:text-primary-400">
                   {skill.name}
                 </span>
-                <span className="text-sm text-neutral-500">
+                <span className="text-sm text-neutral-500 dark:text-neutral-400 transition-colors">
                   {skill.percentage}%
                 </span>
               </div>
@@ -82,7 +86,7 @@ const Skills: React.FC = () => {
 
         {/* Technologies Grid */}
         <div className="mt-16">
-          <h3 className="text-2xl font-semibold text-center text-neutral-900 mb-8">
+          <h3 className="text-2xl font-semibold text-center text-neutral-900 dark:text-white mb-8 transition-colors">
             Technologies I Work With
           </h3>
 
@@ -101,8 +105,11 @@ const Skills: React.FC = () => {
               "AWS",
               "Git",
             ].map((tech) => (
-              <div key={tech} className="card text-center py-4">
-                <span className="text-sm font-medium text-neutral-700">
+              <div
+                key={tech}
+                className="card text-center py-4 hover:scale-105 transition-transform duration-300"
+              >
+                <span className="text-sm font-medium text-neutral-700 dark:text-neutral-200 transition-colors">
                   {tech}
                 </span>
               </div>

@@ -49,14 +49,17 @@ const Experience: React.FC = () => {
   ];
 
   return (
-    <section id="experience" className="py-20 section-padding bg-neutral-50">
+    <section
+      id="experience"
+      className="py-20 section-padding bg-neutral-50 dark:bg-neutral-800/50 transition-colors duration-300"
+    >
       <div className="container-max">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-neutral-900 mb-4">
+          <h2 className="text-4xl font-bold text-neutral-900 dark:text-white mb-4 transition-colors">
             Professional Experience
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full mx-auto mb-6"></div>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+          <p className="text-lg text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto transition-colors">
             My journey through the tech industry, building solutions and growing
             expertise across various technologies and domains.
           </p>
@@ -67,12 +70,12 @@ const Experience: React.FC = () => {
             <div key={index} className="relative mb-12 last:mb-0">
               {/* Timeline line */}
               {index !== experiences.length - 1 && (
-                <div className="absolute left-6 top-16 w-0.5 h-full bg-neutral-200"></div>
+                <div className="absolute left-6 top-16 w-0.5 h-full bg-neutral-200 dark:bg-neutral-700"></div>
               )}
 
               <div className="flex items-start space-x-6">
                 {/* Timeline dot */}
-                <div className="flex-shrink-0 w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center relative z-10">
+                <div className="flex-shrink-0 w-12 h-12 bg-primary-600 dark:bg-primary-500 rounded-full flex items-center justify-center relative z-10 transition-colors">
                   <div className="w-4 h-4 bg-white rounded-full"></div>
                 </div>
 
@@ -80,14 +83,14 @@ const Experience: React.FC = () => {
                 <div className="flex-1 card">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                     <div>
-                      <h3 className="text-xl font-semibold text-neutral-900">
+                      <h3 className="text-xl font-semibold text-neutral-900 dark:text-white transition-colors">
                         {exp.title}
                       </h3>
-                      <p className="text-primary-600 font-medium">
+                      <p className="text-primary-600 dark:text-primary-400 font-medium transition-colors">
                         {exp.company}
                       </p>
                     </div>
-                    <span className="text-sm text-neutral-500 font-medium mt-1 md:mt-0">
+                    <span className="text-sm text-neutral-500 dark:text-neutral-400 font-medium mt-1 md:mt-0 transition-colors">
                       {exp.period}
                     </span>
                   </div>
@@ -96,9 +99,9 @@ const Experience: React.FC = () => {
                     {exp.description.map((item, idx) => (
                       <li
                         key={idx}
-                        className="text-neutral-600 flex items-start"
+                        className="text-neutral-600 dark:text-neutral-300 flex items-start transition-colors"
                       >
-                        <span className="text-primary-500 mr-2 mt-1 flex-shrink-0">
+                        <span className="text-primary-500 dark:text-primary-400 mr-2 mt-1 flex-shrink-0">
                           •
                         </span>
                         {item}
@@ -110,7 +113,7 @@ const Experience: React.FC = () => {
                     {exp.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 bg-primary-50 text-primary-700 text-sm font-medium rounded-full"
+                        className="px-3 py-1 bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-sm font-medium rounded-full transition-colors"
                       >
                         {tech}
                       </span>
@@ -125,10 +128,10 @@ const Experience: React.FC = () => {
         {/* Additional Info */}
         <div className="text-center mt-16">
           <div className="card max-w-md mx-auto">
-            <h3 className="text-lg font-semibold text-neutral-900 mb-2">
+            <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2 transition-colors">
               Ready for New Challenges
             </h3>
-            <p className="text-neutral-600 mb-4">
+            <p className="text-neutral-600 dark:text-neutral-300 mb-4 transition-colors">
               Looking for opportunities to contribute to innovative projects and
               grow with a dynamic team.
             </p>

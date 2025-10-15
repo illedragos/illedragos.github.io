@@ -1,3 +1,4 @@
+import { DarkModeProvider } from "./context/DarkModeContext";
 import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -7,16 +8,18 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="min-h-screen">
-      <Navigation />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Experience />
-      </main>
-      <Footer />
-    </div>
+    <DarkModeProvider>
+      <div className="min-h-screen bg-white dark:bg-neutral-900 transition-colors duration-300">
+        <Navigation />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Experience />
+        </main>
+        <Footer />
+      </div>
+    </DarkModeProvider>
   );
 }
 
