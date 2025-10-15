@@ -70,15 +70,14 @@ const About: React.FC = () => {
           {/* Image/Visual Element */}
           <div className="relative">
             <div className="card p-8 text-center">
-              {/* Placeholder for professional photo */}
-              <div className="w-48 h-48 mx-auto bg-gradient-to-br from-primary-100 to-accent-100 rounded-full flex items-center justify-center mb-6">
-                <svg
-                  className="w-24 h-24 text-primary-400"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                </svg>
+              {/* Profile Photo */}
+              <div className="w-48 h-48 mx-auto mb-6 relative group">
+                <img
+                  src="/profile-pic.jpg"
+                  alt="Dragos Ille"
+                  className="w-full h-full object-cover rounded-full ring-4 ring-primary-500/20 dark:ring-primary-400/30 transition-all duration-300 group-hover:ring-8 group-hover:ring-primary-500/30 dark:group-hover:ring-primary-400/40"
+                />
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-500/10 to-accent-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
 
               <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2 transition-colors">
