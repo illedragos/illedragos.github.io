@@ -16,10 +16,14 @@ const Skills: React.FC = () => {
     { name: "TypeScript", percentage: 70, color: "from-blue-600 to-blue-700" },
     { name: "Node.js", percentage: 65, color: "from-green-500 to-green-600" },
     { name: "Python", percentage: 60, color: "from-yellow-500 to-yellow-600" },
-    { name: "PostgreSQL", percentage: 55, color: "from-blue-700 to-blue-800" },
-    { name: "MongoDB", percentage: 50, color: "from-green-600 to-green-700" },
+    { name: "MySQL", percentage: 55, color: "from-blue-700 to-blue-800" },
+    { name: "Express", percentage: 50, color: "from-green-600 to-green-700" },
     { name: "Docker", percentage: 45, color: "from-blue-400 to-blue-500" },
-    { name: "AWS", percentage: 40, color: "from-orange-500 to-orange-600" },
+    {
+      name: "Chrome extension",
+      percentage: 80,
+      color: "from-orange-500 to-orange-600",
+    },
     { name: "Git", percentage: 80, color: "from-red-500 to-red-600" },
   ];
 
