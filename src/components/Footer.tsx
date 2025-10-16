@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
             </a>
 
             <a
-              href="https://linkedin.com/in/yourprofile"
+              href="https://www.linkedin.com/in/dragos-ille-374a46213/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 text-primary-400 hover:text-primary-300 transition-colors"
@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
             </a>
 
             <a
-              href="https://github.com/yourusername"
+              href="https://illedragos.github.io/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 text-primary-400 hover:text-primary-300 transition-colors"
