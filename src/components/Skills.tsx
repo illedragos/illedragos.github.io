@@ -12,12 +12,16 @@ const Skills: React.FC = () => {
 
   const skills: Skill[] = [
     { name: "React", percentage: 75, color: "from-blue-500 to-blue-600" },
-    { name: "Next.js", percentage: 35, color: "from-gray-700 to-gray-800" },
+    { name: "Next.js", percentage: 65, color: "from-cyan-500 to-cyan-700" },
     { name: "TypeScript", percentage: 70, color: "from-blue-600 to-blue-700" },
-    { name: "Node.js", percentage: 65, color: "from-green-500 to-green-600" },
-    { name: "Python", percentage: 60, color: "from-yellow-500 to-yellow-600" },
+    { name: "Node.js", percentage: 85, color: "from-green-500 to-green-600" },
+    {
+      name: "Material-UI",
+      percentage: 80,
+      color: "from-yellow-500 to-yellow-600",
+    },
     { name: "MySQL", percentage: 55, color: "from-blue-700 to-blue-800" },
-    { name: "Express", percentage: 50, color: "from-green-600 to-green-700" },
+    { name: "Express", percentage: 60, color: "from-green-600 to-green-700" },
     { name: "Docker", percentage: 45, color: "from-blue-400 to-blue-500" },
     {
       name: "Chrome extension",
@@ -100,13 +104,13 @@ const Skills: React.FC = () => {
               "React",
               "Node.js",
               "TypeScript",
-              "Python",
+              "Material-UI",
               "PostgreSQL",
               "MongoDB",
               "Express",
               "Next.js",
               "Docker",
-              "AWS",
+              "Chrome extension",
               "Git",
             ].map((tech) => (
               <div
