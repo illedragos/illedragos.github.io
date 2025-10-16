@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
             </a>
 
             <a
-              href="https://illedragos.github.io/"
+              href="https://github.com/illedragos"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 text-primary-400 hover:text-primary-300 transition-colors"
