@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
             <a
-              href="mailto:your.email@example.com"
+              href="mailto:illedragos@yahoo.com"
               className="inline-flex items-center space-x-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

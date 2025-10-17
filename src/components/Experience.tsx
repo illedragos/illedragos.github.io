@@ -151,7 +151,7 @@ const Experience: React.FC = () => {
               Looking for opportunities to contribute to innovative projects and
               grow with a dynamic team.
             </p>
-            <a href="#contact" className="btn-primary">
+            <a href="mailto:illedragos@yahoo.com" className="btn-primary">
               Let's Connect
             </a>
           </div>
