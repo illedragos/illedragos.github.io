@@ -45,7 +45,7 @@ const About: React.FC = () => {
                   Backend Expertise
                 </h3>
                 <p className="text-neutral-600 dark:text-neutral-400 transition-colors">
-                  Node.js, Python, PostgreSQL
+                  Node.js, Express
                 </p>
               </div>
               <div className="space-y-2 group hover:scale-105 transition-transform duration-300">
