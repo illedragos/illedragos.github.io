@@ -100,18 +100,24 @@ const Skills: React.FC = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {[
-              "JavaScript",
-              "React",
-              "Node.js",
               "TypeScript",
-              "Material-UI",
-              "PostgreSQL",
-              "MongoDB",
-              "Express",
+              "React",
               "Next.js",
+              "Node.js",
+              "Express",
+              "Strapi",
+              "Froala",
               "Docker",
-              "Chrome extension",
-              "Git",
+              "Material-UI",
+              "Tailwind",
+              "Shadcn",
+              "Radix UI",
+              "Lucide",
+              "Playwright",
+              "Chrome Extension",
+              "Google Auth",
+              "Google Calendar API",
+              "Slack API",
             ].map((tech) => (
               <div
                 key={tech}
