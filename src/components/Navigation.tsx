@@ -11,12 +11,20 @@ const Navigation: React.FC = () => {
     { href: "#about", label: "About" },
     { href: "#skills", label: "Skills" },
     { href: "#experience", label: "Experience" },
+    { href: "#education", label: "Education" },
     { href: "#hobbies", label: "Hobbies" },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "skills", "experience", "hobbies"];
+      const sections = [
+        "home",
+        "about",
+        "skills",
+        "experience",
+        "education",
+        "hobbies",
+      ];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
