@@ -22,7 +22,7 @@ const About: React.FC = () => {
             </div>
 
             <p className="text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed transition-colors">
-              I'm a passionate full-stack developer with over 4 years of
+              I'm a passionate full-stack developer with over 5 years of
               experience building scalable web applications. My journey in
               software development has been driven by curiosity and a desire to
               create meaningful digital experiences.
@@ -86,7 +86,7 @@ const About: React.FC = () => {
                   Full-Stack Developer
                 </h3>
                 <p className="text-neutral-600 dark:text-neutral-100 mb-5 transition-colors font-medium">
-                  4+ Years Experience
+                  5+ Years Experience
                 </p>
 
                 <div className="flex justify-center space-x-8">
@@ -100,7 +100,7 @@ const About: React.FC = () => {
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-accent-600 dark:text-accent-400 transition-colors">
-                      4+
+                      5+
                     </div>
                     <div className="text-sm text-neutral-500 dark:text-neutral-300 transition-colors">
                       Years

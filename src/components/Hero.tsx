@@ -55,7 +55,7 @@ const Hero: React.FC = () => {
           </h2>
 
           <p className="text-lg text-neutral-500 dark:text-neutral-300 max-w-2xl mx-auto mb-10 leading-relaxed transition-colors">
-            Crafting elegant digital experiences with 4+ years of expertise in
+            Crafting elegant digital experiences with 5+ years of expertise in
             modern web technologies. Passionate about building scalable
             solutions that make a difference.
           </p>
