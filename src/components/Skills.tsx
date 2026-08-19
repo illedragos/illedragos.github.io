@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import TechCube from "./TechCube";
 
 interface Skill {
   name: string;
@@ -93,8 +94,10 @@ const Skills: React.FC = () => {
         </div>
 
         {/* Technologies Grid */}
-        <div className="mt-16">
-          <h3 className="text-2xl font-semibold text-center text-neutral-900 dark:text-white mb-8 transition-colors">
+        <div className="mt-20">
+          <TechCube />
+
+          <h3 className="mt-14 text-2xl font-semibold text-center text-neutral-900 dark:text-white mb-8 transition-colors">
             Technologies I Work With
           </h3>
 
@@ -121,7 +124,7 @@ const Skills: React.FC = () => {
             ].map((tech) => (
               <div
                 key={tech}
-                className="card text-center py-4 hover:scale-105 transition-transform duration-300"
+                className="card tech-chip text-center py-4"
               >
                 <span className="text-sm font-medium text-neutral-700 dark:text-neutral-200 transition-colors">
                   {tech}

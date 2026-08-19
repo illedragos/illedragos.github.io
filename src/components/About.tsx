@@ -1,6 +1,10 @@
 import React from "react";
+import ParticlePortrait from "./ParticlePortrait";
+import { useTilt } from "../hooks/useTilt";
 
 const About: React.FC = () => {
+  const tilt = useTilt<HTMLDivElement>({ max: 9, lift: 14 });
+
   return (
     <section
       id="about"
@@ -67,49 +71,48 @@ const About: React.FC = () => {
             </div>
           </div>
 
-          {/* Image/Visual Element */}
-          <div className="relative">
-            <div className="card p-8 text-center">
-              {/* Profile Photo */}
-              <div className="w-48 h-48 mx-auto mb-6 relative group">
-                <img
-                  src="/profile-pic.jpg"
-                  alt="Dragos Ille"
-                  className="w-full h-full object-cover rounded-full ring-4 ring-primary-500/20 dark:ring-primary-400/30 transition-all duration-300 group-hover:ring-8 group-hover:ring-primary-500/30 dark:group-hover:ring-primary-400/40"
-                />
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-500/10 to-accent-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
+          {/* Holographic point-cloud portrait */}
+          <div className="relative [perspective:1000px]">
+            <div
+              ref={tilt.ref}
+              onPointerMove={tilt.onPointerMove}
+              onPointerLeave={tilt.onPointerLeave}
+              className="tilt-3d relative mx-auto max-w-md rounded-3xl border border-primary-500/20 dark:border-primary-400/25 bg-white/70 dark:bg-neutral-900/60 p-5 backdrop-blur-sm shadow-lg"
+            >
+              <ParticlePortrait src="/profile-pic.jpg" alt="Dragos Ille" />
 
-              <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2 transition-colors">
-                Full-Stack Developer
-              </h3>
-              <p className="text-neutral-600 dark:text-neutral-100 mb-4 transition-colors font-medium">
-                4+ Years Experience
-              </p>
+              <div className="tilt-layer mt-6 text-center">
+                <h3 className="text-xl font-semibold text-neutral-900 dark:text-white mb-1 transition-colors">
+                  Full-Stack Developer
+                </h3>
+                <p className="text-neutral-600 dark:text-neutral-100 mb-5 transition-colors font-medium">
+                  4+ Years Experience
+                </p>
 
-              <div className="flex justify-center space-x-4">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-primary-600 dark:text-primary-400 transition-colors">
-                    5+
+                <div className="flex justify-center space-x-8">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-primary-600 dark:text-primary-400 transition-colors">
+                      5+
+                    </div>
+                    <div className="text-sm text-neutral-500 dark:text-neutral-300 transition-colors">
+                      Projects
+                    </div>
                   </div>
-                  <div className="text-sm text-neutral-500 dark:text-neutral-300 transition-colors">
-                    Projects
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-accent-600 dark:text-accent-400 transition-colors">
+                      4+
+                    </div>
+                    <div className="text-sm text-neutral-500 dark:text-neutral-300 transition-colors">
+                      Years
+                    </div>
                   </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-accent-600 dark:text-accent-400 transition-colors">
-                    4+
-                  </div>
-                  <div className="text-sm text-neutral-500 dark:text-neutral-300 transition-colors">
-                    Years
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-primary-600 dark:text-primary-400 transition-colors">
-                    10+
-                  </div>
-                  <div className="text-sm text-neutral-500 dark:text-neutral-300 transition-colors">
-                    Technologies
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-primary-600 dark:text-primary-400 transition-colors">
+                      10+
+                    </div>
+                    <div className="text-sm text-neutral-500 dark:text-neutral-300 transition-colors">
+                      Technologies
+                    </div>
                   </div>
                 </div>
               </div>

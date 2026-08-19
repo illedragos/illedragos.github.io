@@ -1,10 +1,44 @@
 import React, { useState, useEffect } from "react";
 import { useDarkMode } from "../context/DarkModeContext";
+import { useHackerMode } from "../context/HackerModeContext";
+
+const HackerToggle: React.FC<{ active: boolean; onClick: () => void }> = ({
+  active,
+  onClick,
+}) => (
+  <button
+    onClick={onClick}
+    aria-pressed={active}
+    aria-label="Toggle hacker mode"
+    title={active ? "Exit hacker mode" : "Enter hacker mode"}
+    className={`relative p-2 rounded-lg transition-all duration-300 ${
+      active
+        ? "bg-[#00ff96]/15 text-[#7dffc4] shadow-[0_0_18px_rgba(0,255,150,0.45)]"
+        : "bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700"
+    }`}
+  >
+    <svg
+      className="w-5 h-5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      viewBox="0 0 24 24"
+    >
+      <rect x="2.5" y="4" width="19" height="16" rx="2" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M7 9l3 3-3 3" />
+      <path strokeLinecap="round" d="M12.5 15h4.5" />
+    </svg>
+    {active && (
+      <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-[#00ff96] shadow-[0_0_8px_#00ff96]" />
+    )}
+  </button>
+);
 
 const Navigation: React.FC = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isDarkMode, toggleDarkMode } = useDarkMode();
+  const { isHackerMode, toggleHackerMode } = useHackerMode();
 
   const navItems = [
     { href: "#home", label: "Home" },
@@ -87,6 +121,8 @@ const Navigation: React.FC = () => {
               </a>
             ))}
 
+            <HackerToggle active={isHackerMode} onClick={toggleHackerMode} />
+
             {/* Dark mode toggle */}
             <button
               onClick={toggleDarkMode}
@@ -115,6 +151,7 @@ const Navigation: React.FC = () => {
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center gap-2">
+            <HackerToggle active={isHackerMode} onClick={toggleHackerMode} />
             <button
               onClick={toggleDarkMode}
               className="p-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all duration-300"
