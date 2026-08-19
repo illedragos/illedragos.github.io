@@ -557,6 +557,271 @@
 }
 
 /* ==========================================================================
+   Extruded HUD power meters
+   ========================================================================== */
+
+.meter {
+  --meter-hue: 195;
+  --meter-value: 0%;
+  --meter-lit: hsl(var(--meter-hue) 92% 60%);
+  --meter-deep: hsl(var(--meter-hue) 88% 34%);
+  --meter-dark: hsl(var(--meter-hue) 80% 18%);
+  padding-bottom: 14px;
+}
+
+.meter__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.meter__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: rgb(23 23 23);
+  transition: color 250ms ease;
+}
+
+.dark .meter__label {
+  color: #fff;
+}
+
+.meter__icon {
+  font-size: 1.15rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 6px hsl(var(--meter-hue) 90% 55% / 0.5));
+}
+
+.meter__value {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  color: var(--meter-lit);
+  text-shadow: 0 0 12px hsl(var(--meter-hue) 90% 55% / 0.55);
+}
+
+.meter__stage {
+  perspective: 900px;
+  perspective-origin: 50% 120%;
+}
+
+.meter__track {
+  position: relative;
+  height: 17px;
+  border-radius: 8px;
+  overflow: hidden;
+  transform: rotateX(26deg);
+  transform-origin: 50% 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.14),
+    rgba(15, 23, 42, 0.05)
+  );
+  border: 1px solid hsl(var(--meter-hue) 55% 45% / 0.3);
+  box-shadow: inset 0 2px 4px rgba(15, 23, 42, 0.2);
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dark .meter__track {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.42),
+    rgba(0, 0, 0, 0.16)
+  );
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.55);
+}
+
+.meter:hover .meter__track {
+  transform: rotateX(10deg) translateZ(16px);
+}
+
+/* The lit top face of the bar. */
+.meter__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--meter-value);
+  border-radius: 8px;
+  background: linear-gradient(
+    180deg,
+    hsl(var(--meter-hue) 96% 72%) 0%,
+    var(--meter-lit) 42%,
+    var(--meter-deep) 100%
+  );
+  box-shadow: 0 0 18px hsl(var(--meter-hue) 95% 55% / 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: width 1200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* LED slicing, painted over the fill rather than built from many elements. */
+.meter__segments {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 7px,
+    rgba(15, 23, 42, 0.26) 7px,
+    rgba(15, 23, 42, 0.26) 10px
+  );
+}
+
+.dark .meter__segments {
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 7px,
+    rgba(0, 0, 0, 0.55) 7px,
+    rgba(0, 0, 0, 0.55) 10px
+  );
+}
+
+/* Playhead riding the leading edge of the fill. */
+.meter__spark {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  left: var(--meter-value);
+  width: 2px;
+  margin-left: -1px;
+  background: #fff;
+  box-shadow: 0 0 12px 2px hsl(var(--meter-hue) 100% 70%),
+    0 0 26px 6px hsl(var(--meter-hue) 100% 60% / 0.6);
+  opacity: 0.9;
+  transition: left 1200ms cubic-bezier(0.16, 1, 0.3, 1);
+  animation: spark-pulse 1.9s ease-in-out infinite;
+}
+
+@keyframes spark-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Thickness: a darker slab under the track, and a soft floor bounce. */
+.meter__reflection {
+  position: relative;
+  height: 7px;
+  margin-top: -1px;
+  width: var(--meter-value);
+  border-radius: 0 0 7px 7px;
+  background: linear-gradient(
+    180deg,
+    hsl(var(--meter-hue) 88% 34%),
+    hsl(var(--meter-hue) 88% 16%)
+  );
+  transition: width 1200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Soft bounce of the bar's light onto the floor beneath it. */
+.meter__reflection::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: -6px;
+  top: 100%;
+  height: 12px;
+  background: linear-gradient(
+    180deg,
+    hsl(var(--meter-hue) 90% 50% / 0.4),
+    transparent
+  );
+  filter: blur(5px);
+}
+
+.meter--compact .meter__track {
+  height: 13px;
+}
+
+.meter--compact .meter__head {
+  margin-bottom: 7px;
+}
+
+/* Driven by the orbit map: the matching meter lights up on hover. */
+.meter--hot .meter__track {
+  transform: rotateX(10deg) translateZ(16px);
+  border-color: hsl(var(--meter-hue) 90% 60% / 0.7);
+}
+
+.meter--hot .meter__value {
+  color: #fff;
+}
+
+/* ==========================================================================
+   Orbital hobby map
+   ========================================================================== */
+
+.orbit-frame {
+  border-radius: 20px;
+  overflow: hidden;
+  background: radial-gradient(
+      ellipse at 50% 50%,
+      rgba(var(--neon), 0.13),
+      transparent 65%
+    ),
+    linear-gradient(175deg, #04101a 0%, #01070d 60%, #000306 100%);
+  border: 1px solid rgba(var(--neon), 0.22);
+  box-shadow: inset 0 0 90px rgba(var(--neon), 0.08),
+    0 26px 70px -40px rgba(var(--neon), 0.7);
+}
+
+/* Faint starfield grid behind the orbits. */
+.orbit-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.24;
+  background-image: linear-gradient(
+      rgba(var(--neon), 0.14) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(var(--neon), 0.14) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(ellipse at 50% 50%, #000 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(
+    ellipse at 50% 50%,
+    #000 20%,
+    transparent 75%
+  );
+}
+
+.orbit-hud {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(var(--neon-2), 0.8);
+  pointer-events: none;
+}
+
+.orbit-hud--top {
+  top: 22px;
+  left: 52px;
+}
+
+.orbit-hud--bottom {
+  bottom: 22px;
+  left: 52px;
+  color: rgba(var(--neon-2), 0.62);
+}
+
+/* ==========================================================================
    CRT overlay — hacker mode only
    ========================================================================== */
 
@@ -684,6 +949,14 @@ html.hacker nav [class*="bg-primary"] {
   background-color: #00ff96 !important;
 }
 
+html.hacker .meter {
+  --meter-hue: 152 !important;
+}
+
+html.hacker .meter__label {
+  color: #d6ffe9 !important;
+}
+
 html.hacker .progress-bar {
   background-color: rgba(var(--neon), 0.12) !important;
 }
@@ -703,6 +976,7 @@ html.hacker .progress-fill {
 
 @media (prefers-reduced-motion: reduce) {
   .holo-scanline,
+  .meter__spark,
   .status-chip__dot,
   .glitch::before,
   .glitch::after,
@@ -716,6 +990,13 @@ html.hacker .progress-fill {
 
   .cube {
     transform: rotateX(-22deg) rotateY(-32deg);
+  }
+
+  .meter__track,
+  .meter__fill,
+  .meter__spark,
+  .meter__reflection {
+    transition: none !important;
   }
 
   .glitch::before,

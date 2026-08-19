@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import TechCube from "./TechCube";
+import SkillMeter from "./SkillMeter";
 
 interface Skill {
   name: string;
   percentage: number;
-  color: string;
+  /** Hue for the meter's palette — see `--meter-hue` in index.css. */
+  hue: number;
 }
 
 const Skills: React.FC = () => {
@@ -12,24 +14,16 @@ const Skills: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
   const skills: Skill[] = [
-    { name: "React", percentage: 75, color: "from-blue-500 to-blue-600" },
-    { name: "Next.js", percentage: 65, color: "from-cyan-500 to-cyan-700" },
-    { name: "TypeScript", percentage: 70, color: "from-blue-600 to-blue-700" },
-    { name: "Node.js", percentage: 85, color: "from-green-500 to-green-600" },
-    {
-      name: "Material-UI",
-      percentage: 80,
-      color: "from-yellow-500 to-yellow-600",
-    },
-    { name: "MySQL", percentage: 55, color: "from-blue-700 to-blue-800" },
-    { name: "Express", percentage: 60, color: "from-green-600 to-green-700" },
-    { name: "Docker", percentage: 45, color: "from-blue-400 to-blue-500" },
-    {
-      name: "Chrome extension",
-      percentage: 80,
-      color: "from-orange-500 to-orange-600",
-    },
-    { name: "Git", percentage: 80, color: "from-red-500 to-red-600" },
+    { name: "React", percentage: 75, hue: 190 },
+    { name: "Next.js", percentage: 65, hue: 205 },
+    { name: "TypeScript", percentage: 70, hue: 218 },
+    { name: "Node.js", percentage: 85, hue: 135 },
+    { name: "Material-UI", percentage: 80, hue: 45 },
+    { name: "MySQL", percentage: 55, hue: 232 },
+    { name: "Express", percentage: 60, hue: 152 },
+    { name: "Docker", percentage: 45, hue: 200 },
+    { name: "Chrome extension", percentage: 80, hue: 28 },
+    { name: "Git", percentage: 80, hue: 12 },
   ];
 
   useEffect(() => {
@@ -68,28 +62,16 @@ const Skills: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-x-10 gap-y-6 max-w-4xl mx-auto">
           {skills.map((skill, index) => (
-            <div key={skill.name} className="space-y-3 group">
-              <div className="flex justify-between items-center">
-                <span className="font-medium text-neutral-900 dark:text-white transition-colors group-hover:text-primary-600 dark:group-hover:text-primary-400">
-                  {skill.name}
-                </span>
-                <span className="text-sm text-neutral-500 dark:text-neutral-400 transition-colors">
-                  {skill.percentage}%
-                </span>
-              </div>
-
-              <div className="progress-bar">
-                <div
-                  className={`progress-fill bg-gradient-to-r ${skill.color} transition-all duration-1000 ease-out`}
-                  style={{
-                    width: isVisible ? `${skill.percentage}%` : "0%",
-                    transitionDelay: `${index * 100}ms`,
-                  }}
-                ></div>
-              </div>
-            </div>
+            <SkillMeter
+              key={skill.name}
+              label={skill.name}
+              value={skill.percentage}
+              hue={skill.hue}
+              active={isVisible}
+              delay={index * 90}
+            />
           ))}
         </div>
 
