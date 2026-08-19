@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import TechCube from "./TechCube";
 import SkillMeter from "./SkillMeter";
+import { useInView } from "../hooks/useInView";
 
 interface Skill {
   name: string;
@@ -10,8 +11,7 @@ interface Skill {
 }
 
 const Skills: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
+  const { ref: sectionRef, inView: isVisible } = useInView<HTMLElement>();
 
   const skills: Skill[] = [
     { name: "React", percentage: 75, hue: 190 },
@@ -25,23 +25,6 @@ const Skills: React.FC = () => {
     { name: "Chrome extension", percentage: 80, hue: 28 },
     { name: "Git", percentage: 80, hue: 12 },
   ];
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section

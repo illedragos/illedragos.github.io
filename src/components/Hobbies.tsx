@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import HobbyOrbit from "./HobbyOrbit";
 import type { OrbitBody } from "./HobbyOrbit";
 import SkillMeter from "./SkillMeter";
+import { useInView } from "../hooks/useInView";
 
 // Module-level so the reference stays stable — HobbyOrbit rebuilds its whole
 // system whenever this array identity changes.
@@ -15,26 +16,8 @@ const HOBBIES: OrbitBody[] = [
 ];
 
 const Hobbies: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const [hovered, setHovered] = useState<number | null>(null);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  const { ref: sectionRef, inView: isVisible } = useInView<HTMLElement>();
 
   const focused = hovered === null ? null : HOBBIES[hovered];
 
