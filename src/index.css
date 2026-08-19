@@ -759,6 +759,253 @@
 }
 
 /* ==========================================================================
+   Project cards
+   ========================================================================== */
+
+.project-card {
+  --card-hue: 195;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.5rem 1.5rem 1.35rem;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid hsl(var(--card-hue) 60% 50% / 0.22);
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(248, 250, 252, 0.86)
+  );
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+.dark .project-card {
+  border-color: hsl(var(--card-hue) 70% 55% / 0.24);
+  background: linear-gradient(
+    165deg,
+    rgba(9, 24, 34, 0.82),
+    rgba(3, 12, 19, 0.9)
+  );
+  box-shadow: inset 0 0 60px hsl(var(--card-hue) 80% 40% / 0.05);
+}
+
+.project-card:hover {
+  border-color: hsl(var(--card-hue) 85% 58% / 0.6);
+}
+
+/* Stretched link covering the whole card. */
+.project-card__link {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+}
+
+.project-card__link:focus-visible {
+  outline: 2px solid hsl(var(--card-hue) 90% 60%);
+  outline-offset: 3px;
+}
+
+/* Light sweeps across the card once on hover. */
+.project-card__sweep {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    hsl(var(--card-hue) 95% 70% / 0.14) 50%,
+    transparent 65%
+  );
+  transform: translateX(-60%);
+  transition: opacity 250ms ease;
+}
+
+.project-card:hover .project-card__sweep {
+  opacity: 1;
+  animation: card-sweep 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes card-sweep {
+  from {
+    transform: translateX(-60%);
+  }
+  to {
+    transform: translateX(60%);
+  }
+}
+
+.project-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.1rem;
+}
+
+.project-card__glyph {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  color: hsl(var(--card-hue) 85% 45%);
+  border: 1px solid hsl(var(--card-hue) 70% 55% / 0.35);
+  background: hsl(var(--card-hue) 90% 55% / 0.1);
+  box-shadow: 0 0 24px hsl(var(--card-hue) 90% 55% / 0.18);
+  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dark .project-card__glyph {
+  color: hsl(var(--card-hue) 92% 68%);
+}
+
+.project-card__glyph svg {
+  width: 23px;
+  height: 23px;
+}
+
+.project-card:hover .project-card__glyph {
+  transform: translateZ(30px) scale(1.06);
+}
+
+.project-card__index {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: hsl(var(--card-hue) 60% 45% / 0.65);
+}
+
+.dark .project-card__index {
+  color: hsl(var(--card-hue) 75% 70% / 0.5);
+}
+
+.project-card__kind {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: hsl(var(--card-hue) 80% 40%);
+  margin-bottom: 0.5rem;
+}
+
+.dark .project-card__kind {
+  color: hsl(var(--card-hue) 90% 68%);
+}
+
+.project-card__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.12rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: rgb(23 23 23);
+  margin-bottom: 0.7rem;
+}
+
+.dark .project-card__title {
+  color: #fff;
+}
+
+.project-card__arrow {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  opacity: 0.45;
+  transition: transform 300ms ease, opacity 300ms ease;
+}
+
+.project-card:hover .project-card__arrow {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+.project-card__summary {
+  font-size: 0.9rem;
+  line-height: 1.62;
+  color: rgb(82 82 82);
+  margin-bottom: 1.1rem;
+  flex: 1;
+}
+
+.dark .project-card__summary {
+  color: rgb(190 205 215);
+}
+
+.project-card__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 1.1rem;
+}
+
+.project-card__chip {
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.03em;
+  color: hsl(var(--card-hue) 45% 32%);
+  border: 1px solid hsl(var(--card-hue) 55% 50% / 0.3);
+  background: hsl(var(--card-hue) 80% 60% / 0.09);
+}
+
+.dark .project-card__chip {
+  color: hsl(var(--card-hue) 70% 82%);
+  border-color: hsl(var(--card-hue) 70% 60% / 0.28);
+}
+
+.project-card__foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 0.85rem;
+  border-top: 1px solid hsl(var(--card-hue) 50% 50% / 0.16);
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(115 115 115);
+}
+
+.dark .project-card__foot {
+  color: rgb(150 170 182);
+}
+
+.project-card__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  flex: none;
+}
+
+.project-card__dot--public {
+  background: hsl(var(--card-hue) 95% 55%);
+  box-shadow: 0 0 9px hsl(var(--card-hue) 95% 55%);
+}
+
+.project-card__dot--internal {
+  background: rgb(148 163 184);
+}
+
+.project-card__flag {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-style: normal;
+  color: hsl(var(--card-hue) 95% 96%);
+  background: hsl(var(--card-hue) 85% 45%);
+  letter-spacing: 0.16em;
+}
+
+html.hacker .project-card {
+  --card-hue: 152 !important;
+}
+
+/* ==========================================================================
    Orbital hobby map
    ========================================================================== */
 
@@ -976,6 +1223,7 @@ html.hacker .progress-fill {
 
 @media (prefers-reduced-motion: reduce) {
   .holo-scanline,
+  .project-card__sweep,
   .meter__spark,
   .status-chip__dot,
   .glitch::before,

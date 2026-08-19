@@ -1,4 +1,5 @@
 import React from "react";
+import { useInView } from "../hooks/useInView";
 
 interface ExperienceItem {
   title: string;
@@ -9,6 +10,8 @@ interface ExperienceItem {
 }
 
 const Experience: React.FC = () => {
+  const { ref, inView } = useInView<HTMLElement>();
+
   const experiences: ExperienceItem[] = [
     {
       title: "Full-Stack Developer",
@@ -66,6 +69,7 @@ const Experience: React.FC = () => {
 
   return (
     <section
+      ref={ref}
       id="experience"
       className="py-20 section-padding bg-neutral-50 dark:bg-neutral-800/50 transition-colors duration-300"
     >
@@ -83,7 +87,15 @@ const Experience: React.FC = () => {
 
         <div className="max-w-4xl mx-auto">
           {experiences.map((exp, index) => (
-            <div key={index} className="relative mb-12 last:mb-0">
+            <div
+              key={index}
+              className="relative mb-12 last:mb-0"
+              style={{
+                opacity: inView ? 1 : 0,
+                transform: inView ? "translateY(0)" : "translateY(28px)",
+                transition: `opacity 650ms ease ${index * 130}ms, transform 650ms cubic-bezier(0.22,1,0.36,1) ${index * 130}ms`,
+              }}
+            >
               {/* Timeline line */}
               {index !== experiences.length - 1 && (
                 <div className="absolute left-6 top-16 w-0.5 h-full bg-neutral-200 dark:bg-neutral-700"></div>

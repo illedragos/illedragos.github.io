@@ -1,4 +1,5 @@
 import React from "react";
+import { useInView } from "../hooks/useInView";
 
 interface EducationItem {
   period: string;
@@ -9,6 +10,8 @@ interface EducationItem {
 }
 
 const Education: React.FC = () => {
+  const { ref, inView } = useInView<HTMLElement>();
+
   const education: EducationItem[] = [
     {
       period: "2021 - present",
@@ -49,6 +52,7 @@ const Education: React.FC = () => {
 
   return (
     <section
+      ref={ref}
       id="education"
       className="py-20 section-padding bg-white dark:bg-neutral-900 transition-colors duration-300"
     >
@@ -72,7 +76,15 @@ const Education: React.FC = () => {
             {/* Education items */}
             <div className="space-y-8">
               {education.map((item, index) => (
-                <div key={index} className="relative group">
+                <div
+                  key={index}
+                  className="relative group"
+                  style={{
+                    opacity: inView ? 1 : 0,
+                    transform: inView ? "translateX(0)" : "translateX(-24px)",
+                    transition: `opacity 600ms ease ${index * 100}ms, transform 600ms cubic-bezier(0.22,1,0.36,1) ${index * 100}ms`,
+                  }}
+                >
                   {/* Timeline dot */}
                   <div className="absolute left-8 top-6 w-4 h-4 bg-primary-500 dark:bg-primary-400 rounded-full border-4 border-white dark:border-neutral-900 transform -translate-x-1/2 hidden md:block group-hover:scale-125 transition-transform duration-300"></div>
 

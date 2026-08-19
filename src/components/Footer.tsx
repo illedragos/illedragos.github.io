@@ -52,16 +52,10 @@ const Footer: React.FC = () => {
           <div className="border-t border-neutral-300 dark:border-neutral-800 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-neutral-500 dark:text-neutral-400 text-sm">
-                © 2025 Dragos Ille. All rights reserved.
+                © {new Date().getFullYear()} Dragos Ille. All rights reserved.
               </p>
 
               <div className="flex space-x-6 mt-4 md:mt-0">
-                <a
-                  href="/philosophy.html"
-                  className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors text-sm"
-                >
-                  Philosophy
-                </a>
                 <a
                   href="#about"
                   className="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors text-sm"
