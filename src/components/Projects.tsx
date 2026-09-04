@@ -26,6 +26,24 @@ const stroke = {
 
 const PROJECTS: Project[] = [
   {
+    title: "Multi-Tier Component Library",
+    kind: "Design System",
+    summary:
+      "Two generations of the design system behind a major cloud provider's marketing site: shipped v1 to production, then helped architect the v2 rebuild under strict Atomic Design, with patterns mapped 1:1 to CMS blocks so pages compose without custom code.",
+    stack: ["TypeScript", "React", "CSS Modules", "Payload CMS", "Storybook"],
+    hue: 330,
+    access: "internal",
+    featured: true,
+    glyph: (
+      <svg viewBox="0 0 24 24" {...stroke}>
+        <circle cx="12" cy="5" r="2.2" />
+        <circle cx="5" cy="17" r="2.2" />
+        <circle cx="19" cy="17" r="2.2" />
+        <path d="M10.4 6.8 6.6 15.2M13.6 6.8l3.8 8.4M7.2 17h9.6" />
+      </svg>
+    ),
+  },
+  {
     title: "Google Docs Feedback Extension",
     kind: "Chrome Extension",
     summary:
@@ -33,7 +51,6 @@ const PROJECTS: Project[] = [
     stack: ["TypeScript", "Chrome APIs", "React", "Playwright"],
     hue: 28,
     access: "internal",
-    featured: true,
     glyph: (
       <svg viewBox="0 0 24 24" {...stroke}>
         <rect x="3" y="3" width="18" height="18" rx="3" />
