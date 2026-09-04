@@ -92,7 +92,7 @@ const About: React.FC = () => {
                 <div className="flex justify-center space-x-8">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-primary-600 dark:text-primary-400 transition-colors">
-                      5+
+                      7+
                     </div>
                     <div className="text-sm text-neutral-500 dark:text-neutral-300 transition-colors">
                       Projects
