@@ -34,6 +34,48 @@ const HackerToggle: React.FC<{ active: boolean; onClick: () => void }> = ({
   </button>
 );
 
+/**
+ * Light/dark switch. Hacker mode is a dark-only experience, so it hands this
+ * button a `locked` flag rather than letting the two palettes mix.
+ */
+const ThemeToggle: React.FC<{
+  dark: boolean;
+  locked: boolean;
+  onClick: () => void;
+}> = ({ dark, locked, onClick }) => (
+  <button
+    onClick={onClick}
+    disabled={locked}
+    aria-label={
+      locked ? "Theme locked to dark while hacker mode is on" : "Toggle dark mode"
+    }
+    title={locked ? "Hacker mode is dark only" : undefined}
+    className={`p-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 transition-all duration-300 group ${
+      locked
+        ? "opacity-40 cursor-not-allowed"
+        : "hover:bg-neutral-200 dark:hover:bg-neutral-700"
+    }`}
+  >
+    {dark ? (
+      <svg
+        className="w-5 h-5 transform group-hover:rotate-12 transition-transform"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" />
+      </svg>
+    ) : (
+      <svg
+        className="w-5 h-5 transform group-hover:-rotate-12 transition-transform"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+      </svg>
+    )}
+  </button>
+);
+
 const Navigation: React.FC = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -125,58 +167,21 @@ const Navigation: React.FC = () => {
 
             <HackerToggle active={isHackerMode} onClick={toggleHackerMode} />
 
-            {/* Dark mode toggle */}
-            <button
+            <ThemeToggle
+              dark={isDarkMode || isHackerMode}
+              locked={isHackerMode}
               onClick={toggleDarkMode}
-              className="p-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all duration-300 group"
-              aria-label="Toggle dark mode"
-            >
-              {isDarkMode ? (
-                <svg
-                  className="w-5 h-5 transform group-hover:rotate-12 transition-transform"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" />
-                </svg>
-              ) : (
-                <svg
-                  className="w-5 h-5 transform group-hover:-rotate-12 transition-transform"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                </svg>
-              )}
-            </button>
+            />
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center gap-2">
             <HackerToggle active={isHackerMode} onClick={toggleHackerMode} />
-            <button
+            <ThemeToggle
+              dark={isDarkMode || isHackerMode}
+              locked={isHackerMode}
               onClick={toggleDarkMode}
-              className="p-2 rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all duration-300"
-              aria-label="Toggle dark mode"
-            >
-              {isDarkMode ? (
-                <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" />
-                </svg>
-              ) : (
-                <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                </svg>
-              )}
-            </button>
+            />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 text-neutral-900 dark:text-white"

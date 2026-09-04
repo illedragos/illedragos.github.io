@@ -23,11 +23,15 @@ export const DarkModeProvider: React.FC<{ children: React.ReactNode }> = ({
   });
 
   useEffect(() => {
-    // Update document class and localStorage
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
+    const root = document.documentElement;
+    // Hacker mode is dark-only and forces `dark` on (see HackerModeContext).
+    // Effects run child-first, so this one lands *after* it on mount: without
+    // the guard a stored light preference would strip `dark` straight back off
+    // and leave the green palette sitting on a white page.
+    if (isDarkMode || root.classList.contains("hacker")) {
+      root.classList.add("dark");
     } else {
-      document.documentElement.classList.remove("dark");
+      root.classList.remove("dark");
     }
     localStorage.setItem("darkMode", isDarkMode.toString());
   }, [isDarkMode]);
