@@ -76,6 +76,24 @@ const PROJECTS: Project[] = [
     ),
   },
   {
+    title: "Scheduled Reporting Service",
+    kind: "Backend Service",
+    summary:
+      "A batch job I owned end to end for an AI essay-assessment platform, mailing daily operational digests to product and business stakeholders. Designed for safe production runs: env-gated recipients and a dry-run mode that logs payloads instead of sending.",
+    stack: ["TypeScript", "Node.js", "Sequelize", "AWS SES", "Docker", "GitLab CI"],
+    hue: 240,
+    access: "internal",
+    glyph: (
+      <svg viewBox="0 0 24 24" {...stroke}>
+        <path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h13A2.5 2.5 0 0 1 21 7.5v4.5" />
+        <path d="M3 7.8 12 14l4.4-3" />
+        <path d="M3 7.5v9A2.5 2.5 0 0 0 5.5 19h6" />
+        <circle cx="17.5" cy="16.5" r="4" />
+        <path d="M17.5 14.7v1.9l1.4 1" />
+      </svg>
+    ),
+  },
+  {
     title: "Employees Management App",
     kind: "Internal Platform",
     summary:
