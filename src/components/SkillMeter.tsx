@@ -4,8 +4,12 @@ import { useCountUp } from "../hooks/useCountUp";
 interface Props {
   label: string;
   value: number;
-  /** Hue drives the whole meter's palette through a CSS custom property. */
-  hue: number;
+  /**
+   * Optional override. Left out, the hue is derived from `value` so a grid of
+   * meters reads as one gradient instead of a per-skill rainbow. The hobby map
+   * passes one so each row matches the colour of its planet.
+   */
+  hue?: number;
   active: boolean;
   delay?: number;
   icon?: string;
@@ -13,11 +17,19 @@ interface Props {
   highlighted?: boolean;
 }
 
+/** Endpoints of the site gradient: primary-500 #0ea5e9 and accent-500 #22c55e. */
+const PRIMARY_HUE = 199;
+const ACCENT_HUE = 142;
+
+/** Blue at 40 and below, ramping to green at 80 and above. */
+const hueForValue = (value: number) => {
+  const t = Math.min(1, Math.max(0, (value - 40) / 40));
+  return Math.round(PRIMARY_HUE - (PRIMARY_HUE - ACCENT_HUE) * t);
+};
+
 /**
- * An extruded HUD power meter: a perspective-tilted track with a lit top face,
- * a thickness edge below it, LED segmentation and a glowing playhead pinned to
- * the fill. Colour comes from `--meter-hue`, so hacker mode can retint every
- * meter on the page with one rule.
+ * A single filled track. Colour comes from `--meter-hue`, so hacker mode can
+ * retint every meter on the page with one rule.
  */
 const SkillMeter: React.FC<Props> = ({
   label,
@@ -38,7 +50,7 @@ const SkillMeter: React.FC<Props> = ({
       }`}
       style={
         {
-          "--meter-hue": hue,
+          "--meter-hue": hue ?? hueForValue(value),
           "--meter-value": `${active ? value : 0}%`,
         } as React.CSSProperties
       }
@@ -51,13 +63,8 @@ const SkillMeter: React.FC<Props> = ({
         <span className="meter__value">{Math.round(shown)}%</span>
       </div>
 
-      <div className="meter__stage">
-        <div className="meter__track">
-          <div className="meter__fill" />
-          <div className="meter__segments" />
-          <div className="meter__spark" />
-        </div>
-        <div className="meter__reflection" />
+      <div className="meter__track">
+        <div className="meter__fill" />
       </div>
     </div>
   );

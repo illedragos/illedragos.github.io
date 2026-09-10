@@ -6,24 +6,22 @@ import { useInView } from "../hooks/useInView";
 interface Skill {
   name: string;
   percentage: number;
-  /** Hue for the meter's palette — see `--meter-hue` in index.css. */
-  hue: number;
 }
 
 const Skills: React.FC = () => {
   const { ref: sectionRef, inView: isVisible } = useInView<HTMLElement>();
 
   const skills: Skill[] = [
-    { name: "React", percentage: 75, hue: 190 },
-    { name: "Next.js", percentage: 65, hue: 205 },
-    { name: "TypeScript", percentage: 70, hue: 218 },
-    { name: "Node.js", percentage: 85, hue: 135 },
-    { name: "Material-UI", percentage: 80, hue: 45 },
-    { name: "MySQL", percentage: 55, hue: 232 },
-    { name: "Express", percentage: 60, hue: 152 },
-    { name: "Docker", percentage: 45, hue: 200 },
-    { name: "Chrome extension", percentage: 80, hue: 28 },
-    { name: "Git", percentage: 80, hue: 12 },
+    { name: "React", percentage: 75 },
+    { name: "Next.js", percentage: 65 },
+    { name: "TypeScript", percentage: 70 },
+    { name: "Node.js", percentage: 85 },
+    { name: "Material-UI", percentage: 80 },
+    { name: "MySQL", percentage: 55 },
+    { name: "Express", percentage: 60 },
+    { name: "Docker", percentage: 45 },
+    { name: "Chrome extension", percentage: 80 },
+    { name: "Git", percentage: 80 },
   ];
 
   return (
@@ -51,7 +49,6 @@ const Skills: React.FC = () => {
               key={skill.name}
               label={skill.name}
               value={skill.percentage}
-              hue={skill.hue}
               active={isVisible}
               delay={index * 90}
             />

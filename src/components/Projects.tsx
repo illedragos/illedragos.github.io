@@ -7,22 +7,12 @@ interface Project {
   kind: string;
   summary: string;
   stack: string[];
-  hue: number;
   /** Public link where one exists; internal client work has none. */
   href?: string;
   access: "public" | "internal";
   /** Draws a small badge only — every card is the same size. */
   featured?: boolean;
-  glyph: React.ReactNode;
 }
-
-const stroke = {
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 1.5,
-  strokeLinecap: "round" as const,
-  strokeLinejoin: "round" as const,
-};
 
 const PROJECTS: Project[] = [
   {
@@ -31,17 +21,8 @@ const PROJECTS: Project[] = [
     summary:
       "Two generations of the design system behind a major cloud provider's marketing site: shipped v1 to production, then helped architect the v2 rebuild under strict Atomic Design, with patterns mapped 1:1 to CMS blocks so pages compose without custom code.",
     stack: ["TypeScript", "React", "CSS Modules", "Payload CMS", "Storybook"],
-    hue: 330,
     access: "internal",
     featured: true,
-    glyph: (
-      <svg viewBox="0 0 24 24" {...stroke}>
-        <circle cx="12" cy="5" r="2.2" />
-        <circle cx="5" cy="17" r="2.2" />
-        <circle cx="19" cy="17" r="2.2" />
-        <path d="M10.4 6.8 6.6 15.2M13.6 6.8l3.8 8.4M7.2 17h9.6" />
-      </svg>
-    ),
   },
   {
     title: "Google Docs Feedback Extension",
@@ -49,16 +30,7 @@ const PROJECTS: Project[] = [
     summary:
       "A published Chrome Extension that surfaces real-time writing feedback inside Google Docs, driven by background and content scripts and covered by automated Playwright tests.",
     stack: ["TypeScript", "Chrome APIs", "React", "Playwright"],
-    hue: 28,
     access: "internal",
-    glyph: (
-      <svg viewBox="0 0 24 24" {...stroke}>
-        <rect x="3" y="3" width="18" height="18" rx="3" />
-        <path d="M8 9h8M8 13h5" />
-        <circle cx="17" cy="14.5" r="3.2" />
-        <path d="M19.3 16.8 21.5 19" />
-      </svg>
-    ),
   },
   {
     title: "Feedback-Driven Writing Platform",
@@ -66,14 +38,7 @@ const PROJECTS: Project[] = [
     summary:
       "A writing environment built around structured feedback, pairing a Froala-based editor with Node and Express services behind a Next.js front end.",
     stack: ["React", "Next.js", "Froala", "Node.js", "Express"],
-    hue: 200,
     access: "internal",
-    glyph: (
-      <svg viewBox="0 0 24 24" {...stroke}>
-        <path d="M4 20h16" />
-        <path d="M14.5 4.5a2.1 2.1 0 0 1 3 3L9 16l-4 1 1-4z" />
-      </svg>
-    ),
   },
   {
     title: "Scheduled Reporting Service",
@@ -81,17 +46,7 @@ const PROJECTS: Project[] = [
     summary:
       "A batch job I owned end to end for an AI essay-assessment platform, mailing daily operational digests to product and business stakeholders. Designed for safe production runs: env-gated recipients and a dry-run mode that logs payloads instead of sending.",
     stack: ["TypeScript", "Node.js", "Sequelize", "AWS SES", "Docker", "GitLab CI"],
-    hue: 240,
     access: "internal",
-    glyph: (
-      <svg viewBox="0 0 24 24" {...stroke}>
-        <path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h13A2.5 2.5 0 0 1 21 7.5v4.5" />
-        <path d="M3 7.8 12 14l4.4-3" />
-        <path d="M3 7.5v9A2.5 2.5 0 0 0 5.5 19h6" />
-        <circle cx="17.5" cy="16.5" r="4" />
-        <path d="M17.5 14.7v1.9l1.4 1" />
-      </svg>
-    ),
   },
   {
     title: "Employees Management App",
@@ -99,16 +54,7 @@ const PROJECTS: Project[] = [
     summary:
       "Role-based staff platform with a custom ACL guarding every REST endpoint, wired into Slack and Google Calendar for time-off scheduling and automated reporting.",
     stack: ["Node.js", "Express", "Google Calendar API", "Slack API", "IAP"],
-    hue: 152,
     access: "internal",
-    glyph: (
-      <svg viewBox="0 0 24 24" {...stroke}>
-        <circle cx="9" cy="8" r="3" />
-        <path d="M3.5 19a5.5 5.5 0 0 1 11 0" />
-        <path d="M16 6.5a3 3 0 0 1 0 5.6" />
-        <path d="M17.5 19a5.4 5.4 0 0 0-2.2-4.3" />
-      </svg>
-    ),
   },
   {
     title: "Corporate Site & CMS",
@@ -116,14 +62,7 @@ const PROJECTS: Project[] = [
     summary:
       "A responsive corporate website with dynamic article management through Strapi, tuned for SEO and fast content delivery.",
     stack: ["Next.js", "Strapi", "Tailwind", "SEO"],
-    hue: 265,
     access: "internal",
-    glyph: (
-      <svg viewBox="0 0 24 24" {...stroke}>
-        <rect x="3" y="4" width="18" height="16" rx="2.5" />
-        <path d="M3 9h18M8 13h8M8 16.5h5" />
-      </svg>
-    ),
   },
   {
     title: "Tennis Statistics Platform",
@@ -131,14 +70,7 @@ const PROJECTS: Project[] = [
     summary:
       "Player statistics and profiles served by a Java and Spring backend, with a dynamic Angular front end. Built during an internship at Fortech.",
     stack: ["Java", "Spring", "Angular", "REST"],
-    hue: 68,
     access: "internal",
-    glyph: (
-      <svg viewBox="0 0 24 24" {...stroke}>
-        <circle cx="12" cy="12" r="8.5" />
-        <path d="M5 6.5a9 9 0 0 0 0 11M19 6.5a9 9 0 0 1 0 11" />
-      </svg>
-    ),
   },
   {
     title: "This Portfolio",
@@ -146,14 +78,8 @@ const PROJECTS: Project[] = [
     summary:
       "The site you're on: a hand-rolled WebGL point cloud, canvas-projected 3D scenes and a hacker mode, built with no 3D library and shipped to GitHub Pages.",
     stack: ["React 19", "TypeScript", "WebGL", "Vite", "Tailwind"],
-    hue: 12,
     href: "https://github.com/illedragos/illedragos.github.io",
     access: "public",
-    glyph: (
-      <svg viewBox="0 0 24 24" {...stroke}>
-        <path d="m9 8-5 4 5 4M15 8l5 4-5 4M13.5 5l-3 14" />
-      </svg>
-    ),
   },
 ];
 
@@ -178,7 +104,6 @@ const ProjectCard: React.FC<{ project: Project; index: number; shown: boolean }>
         onPointerMove={tilt.onPointerMove}
         onPointerLeave={tilt.onPointerLeave}
         className="project-card tilt-3d"
-        style={{ "--card-hue": project.hue } as React.CSSProperties}
       >
         {/* Stretched link: keeps the card a plain div while still giving
             keyboard and screen-reader users one real, labelled target. */}
@@ -195,16 +120,14 @@ const ProjectCard: React.FC<{ project: Project; index: number; shown: boolean }>
         <span className="project-card__sweep" />
 
         <div className="project-card__top">
-          <span className="project-card__glyph">{project.glyph}</span>
+          <span className="project-card__kind">
+            {project.featured && <em className="project-card__flag">featured</em>}
+            {project.kind}
+          </span>
           <span className="project-card__index">
             {String(index + 1).padStart(2, "0")}
           </span>
         </div>
-
-        <span className="project-card__kind">
-          {project.featured && <em className="project-card__flag">featured</em>}
-          {project.kind}
-        </span>
 
         <h3 className="project-card__title">
           {project.title}
@@ -212,7 +135,10 @@ const ProjectCard: React.FC<{ project: Project; index: number; shown: boolean }>
             <svg
               className="project-card__arrow"
               viewBox="0 0 24 24"
-              {...stroke}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={1.5}
+              strokeLinecap="round"
               aria-hidden="true"
             >
               <path d="M7 17 17 7M9 7h8v8" />
