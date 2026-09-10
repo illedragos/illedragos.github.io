@@ -25,6 +25,14 @@ const PROJECTS: Project[] = [
     featured: true,
   },
   {
+    title: "LLM Prompt Generation Service",
+    kind: "AI Microservice",
+    summary:
+      "An Express service wrapping the OpenAI API behind task-specific endpoints, turning a teacher's free-text idea into usable classroom essay prompts. Designed to make unreliable model output dependable: malformed or empty JSON is retried, with per-route timeouts and retry and latency telemetry returned to callers.",
+    stack: ["TypeScript", "Express", "OpenAI API", "Docker", "AWS ECS", "GitLab CI"],
+    access: "internal",
+  },
+  {
     title: "Google Docs Feedback Extension",
     kind: "Chrome Extension",
     summary:

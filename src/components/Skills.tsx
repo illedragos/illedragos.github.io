@@ -94,6 +94,7 @@ const Skills: React.FC = () => {
               "GitLab CI",
               "Playwright",
               "Jest",
+              "OpenAI API",
               "Chrome Extension",
               "Google Auth",
               "Google Calendar API",
