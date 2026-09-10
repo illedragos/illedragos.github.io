@@ -49,11 +49,11 @@ const PROJECTS: Project[] = [
     access: "internal",
   },
   {
-    title: "Employees Management App",
+    title: "Employee Management Platform",
     kind: "Internal Platform",
     summary:
-      "Role-based staff platform with a custom ACL guarding every REST endpoint, wired into Slack and Google Calendar for time-off scheduling and automated reporting.",
-    stack: ["Node.js", "Express", "Google Calendar API", "Slack API", "IAP"],
+      "A company-wide platform I worked across both sides of: a role-gated React and TypeScript SPA over an Express and MySQL API, covering time-off, desk booking on an interactive floorplan, team administration and reporting. Shipped to Kubernetes.",
+    stack: ["React", "TypeScript", "Redux", "Express", "MySQL", "Kubernetes"],
     access: "internal",
   },
   {
